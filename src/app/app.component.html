@@ -1,0 +1,109 @@
+<div class="container">
+
+
+  <div class="panel panel-primary">
+
+    <div class="panel-body">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li *ngFor="let searchTab of searchTabs; let i = index" class="nav-item">
+          <a class="nav-link" id="{{searchTab.id}}-tab" data-toggle="pill" (click)="selectTab(searchTab)" href="#{{searchTab.id}}-tabPane" role="tab" aria-controls="pills-home" aria-selected="true">&nbsp;{{getTabName(searchTab)}} <button class="close" (click)="deleteTab(searchTab)" type="button">×</button> </a>
+        </li>
+        <li><button class="close addTabs" type="button" (click)="addTab()">+</button></li>
+      </ul>
+      <div class="tab-content" id="pills-tabContent">
+        <div *ngFor="let searchTab of searchTabs; let i = index" class="tab-pane fade show" id="{{searchTab.id}}-tabPane" role="tabpanel" aria-labelledby="pills-home-tab">
+
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Type your search criteria</h4>
+              <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                  <input [(ngModel)]="searchTab.query" type="text" class="form-control input-lg" placeholder="Search.." />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary btn-lg " type="button" (click)="search(searchTab)">
+                      Search
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row marginTop">
+            <div class="col-md-12">
+              <label class="radio-inline">
+                <input type="radio" value="video" name="searchType_{{searchTab.id}}"  [(ngModel)]="searchTab.type">Videos
+              </label>
+              <label class="radio-inline">
+                <input type="radio" value="image" name="searchType_{{searchTab.id}}"  [(ngModel)]="searchTab.type">Images
+              </label>
+            </div>
+          </div>
+          <div class="row marginTop">
+
+            <div *ngIf="isLoading" class="col-md-12">
+              <div class="loading">
+              </div>
+            </div>
+
+            <div  *ngFor="let result of searchTab.results; let i = index" class="col-xs-12 col-sm-6 col-md-3">
+
+              <div *ngIf="!isLoading" class="panel panel-default ">
+                <div class="panel-body multimedia-container">
+                  <a style="cursor:pointer" data-toggle="modal" (click)="loadMediaDetails(result)" data-target="#mediaModal" title="{{result.description}}" data-type="image">
+                    <img class="multimedia-image" src="{{result.smallThumb}}" alt="{{result.description}}" />
+                    <span class="overlay"><i class="glyphicon glyphicon-fullscreen"></i></span>
+                  </a>
+                </div>
+                <div class="panel-footer">
+                  <span>{{result.title}}</span>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="bottomtag"></div>
+
+<!--BEGIN MODAL DIALOG-->
+<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Media Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+
+          <div class="panel panel-default ">
+            <div class="panel-body multimedia-container modal-container">
+              <a title="{{selectedResult.description}}"  data-type="image" data-toggle="lightbox">
+                <img class="multimedia-image" src="{{selectedResult.largeThumb}}" alt="{{selectedResult.description}}" />
+                <span class="overlay"><i class="glyphicon glyphicon-fullscreen"></i></span>
+              </a>
+            </div>
+            <div class="panel-footer">
+              <span>{{selectedResult.title}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--END MODAL DIALOG-->

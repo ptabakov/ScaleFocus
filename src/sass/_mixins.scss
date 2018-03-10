@@ -1,0 +1,86 @@
+
+#exTab3 .nav-pills > li > a {
+  border-radius: 4px 4px 0 0;
+}
+
+.container {
+  padding-top:20px;
+}
+
+#exTab3 .tab-content {
+  color: $TabColor;
+  background-color: $TabBackground;
+  padding: 5px 15px;
+}
+.panel-footer {
+  background-color: white!important;
+}
+
+.marginTop{
+  margin-top:20px;
+}
+
+.multimedia-container{
+  padding:10px 10px 10px 10px!important;
+  height:150px;
+  overflow:hidden;
+}
+
+.modal-container {
+  
+  height:auto!important;
+}
+
+.multimedia-image {
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: auto;
+  transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+
+.nav-pills > li .close {
+  margin: -2px 0 0 10px;
+  font-size: 18px;
+  color:black;
+  font-weight:bold;
+}
+.addTabs {
+  margin: 2px 0 0 10px!important;
+  font-weight: bold;
+  color: black!important;
+  font-size: 28px !important;
+}
+
+#custom-search-input {
+  padding: 3px;
+  border: solid 1px #E4E4E4;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+#custom-search-input input {
+  border: 0;
+  box-shadow: none;
+}
+
+.loading {
+  width: 55px;
+  height: 55px;
+  background-image: url("../assets/images/ajax-loader.gif");
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#custom-search-input button:hover {
+  border: 0;
+  box-shadow: none;
+  border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search {
+  font-size: 23px;
+}
